@@ -20,7 +20,7 @@ const App = () => {
   return (
     <div className="app-container">
       <DottedBackground />
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}> 
         <Routes>
           <Route path="/" element={<TitlePage />} />
           {/* <Route path="/contact-me" element={<ContactMe />} /> */}
