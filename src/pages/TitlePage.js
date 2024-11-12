@@ -29,9 +29,13 @@ const TitlePage = () => {
   }, [currentIndex, text]);
 
   const navigate = useNavigate();
+
   const goToContactMe = () => {
-    navigate('#/contact-me')
-  }
+    navigate('/contact-me')
+  };
+  const openResume = () => {
+    window.open(process.env.PUBLIC_URL + '/Alexandra-Savino-Resume.pdf', '_blank')
+  };
 
 
   return (
@@ -51,16 +55,17 @@ const TitlePage = () => {
             </div> 
 
             <div className="TITLEPAGE_astroIntroContainer">
-              <p className="TITLEPAGE_astroLine large">Incoming Intern @Meta</p>
+              <p className="TITLEPAGE_astroLine large"> Incoming @Meta</p>
               {/* <p className="astroLine small">from</p> */}
-              <p className="TITLEPAGE_astroLine large">Astrophysics Graduate from Columbia University</p>
+              <p className="TITLEPAGE_astroLine small">Astrophysics Grad </p>
+              <p className="TITLEPAGE_astroLine large">Columbia University</p>
             </div>
 
           </div>
         
 
           <div className="TITLEPAGE_buttonContainer">
-            <button className="TITLEPAGE_titleButtons TITLEPAGE_downloadCVButton" onClick={() => window.open('../images/Alexandra-Savino-Resume.pdf', '_blank')}>
+            <button className="TITLEPAGE_titleButtons TITLEPAGE_downloadCVButton" onClick={openResume}>
               Download CV
             </button>
             <button className="TITLEPAGE_titleButtons TITLEPAGE_contactMeButton" onClick={goToContactMe}>

@@ -126,7 +126,8 @@
 } .TITLEPAGE_astroLine.large {
   font-size: 21px;
 } .TITLEPAGE_astroLine.small {
-  font-size: 15px;
+  font-size: 16px;
+  padding-top: 5px
 }
 
 
