@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Mohave:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:wght@400;700&display=swap');
+
+
+:root {
+  /* FONTS */
+  /* Monaco */
+  --font-computer: 'Mohave', sans-serif;
+  --font-computer-ls: -0.03em;
+  --font-script: 'Newsreader', serif;
+  --font-script-ls:  -0.03em;
+  --font-news-cycle: 'News Cycle', sans-serif;
+  --font-news-cycle-ls: -0.03em;
+
+  /* COLORS */
+  --my-red: #CE2C1E;
+  --my-yellow: #DDCA56;
+  --my-green: #387F77;
+  --my-blue: #4AA3EA;
+  --my-beige: #DFDBC6;
+  --my-grey: #D9D9D9;
+  --my-darker-grey: #7D7B6F;
+}

@@ -1,0 +1,219 @@
+@import '../generals/universals.css';
+
+
+/****** LARGER CONTAINERS ******/
+.TITLEPAGE_pageContainer {
+  width: 100vw;
+  min-width: 1100px;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: row;
+
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 1100px) {
+  .TITLEPAGE_contentWrapper {
+    min-width: 950px !important;
+  }
+}
+
+@media (min-width: 1101px) and (max-width: 1399px) {
+  .TITLEPAGE_contentWrapper {
+    width: calc(950px + (1000 - 950) * ((100vw - 1100px) / (1400 - 1100))) !important;
+  }
+}
+
+@media (min-width: 1400px) {
+  .TITLEPAGE_contentWrapper {
+    width: 1000px !important;
+  }
+}
+
+.TITLEPAGE_contentWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: fit-content;
+  height: fit-content;
+}
+
+.TITLEPAGE_rightSideContainer {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  width: 317px;
+  gap: 30px;
+}
+
+
+
+
+
+/****** RED RECTANGLE CIRCUIT ******/
+.TITLEPAGE_redContainer {
+  position: relative;
+  min-width: 569px;
+  height: 548px;
+}
+
+.TITLEPAGE_circuitRedRectangle {
+  position: absolute;
+  width: 393px;
+  height: 527px;
+  background-color: var(--my-red);
+  border-radius: 10px;
+}
+  
+.TITLEPAGE_circuitSchematicPNG {
+  position: absolute;
+  top: 8px;
+  left: -10px;
+  width: 583px;
+  height: 550px;
+}
+
+
+
+
+
+/****** INTRODUCTORY TEXT ******/
+.TITLEPAGE_textContainer {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  letter-spacing: var(--font-script-ls);
+}
+
+.TITLEPAGE_SWEIntroContainer {
+  display: inline-block;
+  line-height: 0.12;
+}
+
+.TITLEPAGE_SWELine {
+  font-family: var(--font-computer);
+  color: black;
+  text-align: center;
+} .TITLEPAGE_SWELine.small {
+  font-size: 25px;
+} .TITLEPAGE_SWELine.large {
+  font-size: 30px;
+}
+
+.TITLEPAGE_myName {
+  color: var(--my-red);
+  font-weight: bold;
+}
+
+
+.TITLEPAGE_astroIntroContainer {
+  display: inline-block;
+  line-height: 0.1;
+}
+
+.TITLEPAGE_astroLine {
+  font-family: var(--font-script);
+  font-weight: bold;
+  color: black;
+  text-align: center;
+} .TITLEPAGE_astroLine.large {
+  font-size: 21px;
+} .TITLEPAGE_astroLine.small {
+  font-size: 15px;
+}
+
+
+/****** CV+CONTACT BUTTONS ******/
+.TITLEPAGE_buttonContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 305px;
+  z-index: 1;
+}
+
+.TITLEPAGE_titleButtons {
+  position: relative;
+  overflow: hidden;
+  height: 43px;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: center;
+
+  padding-top: 4px;
+  background-color: var(--my-beige);
+  border: none;
+  border-radius: 8px;
+  font-family: var(--font-computer);
+  font-size: 20px;
+  color: black;
+  line-height: 2;
+  
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.TITLEPAGE_titleButtons::before {
+  content: '';
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: right 0.3s ease-in-out, opacity 0.3s ease-in-out;
+
+  background-image: url('../images/arrow.png');
+  background-size: 22px auto;
+  width: 23px;
+  height: 16px;
+  display: block;
+}
+
+.TITLEPAGE_titleButtons:hover {
+  padding-right: 22px;
+} .TITLEPAGE_titleButtons:hover::before {
+  right: 9px;
+  opacity: 1;
+} .TITLEPAGE_titleButtons:active {
+  transform: scale(0.95);
+}
+
+.TITLEPAGE_downloadCVButton {
+  min-width: 146px;
+} .TITLEPAGE_contactMeButton {
+  min-width: 139px;
+}
+
+
+
+/****** YELLOW RECTANGLE PNG ******/
+.TITLEPAGE_yellowContainer  {
+  position: relative;
+  height: 294px;
+  width: 244px;
+}
+
+.TITLEPAGE_pngYellowRectangle {
+  position: absolute;
+  top: 65px;
+  width: 197px;
+  height: 229px;
+  background-color: var(--my-yellow);
+  border-radius: 8px;
+}
+
+.TITLEPAGE_maltaBoardPNG {
+  position: absolute; 
+  top: -126px;
+  left: -20px;
+  width: 340px;
+  height: 420px;
+}

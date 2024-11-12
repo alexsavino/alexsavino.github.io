@@ -1,0 +1,16 @@
+.dotted-graph {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+    z-index: -1;
+  }
+  
+  .dot {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    border-radius: 25%;
+  }  
