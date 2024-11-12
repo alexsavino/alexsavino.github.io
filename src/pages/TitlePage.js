@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './TitlePage.css';
 import titlePageSchematic from '../images/title-page-schematic.png';
 import maltaBoard from '../images/malta-board.png';
@@ -27,6 +28,11 @@ const TitlePage = () => {
     return () => clearInterval(intervalId);
   }, [currentIndex, text]);
 
+  const navigate = useNavigate();
+  const goToContactMe = () => {
+    navigate('#/contact-me')
+  }
+
 
   return (
     <div className="TITLEPAGE_pageContainer">
@@ -45,19 +51,19 @@ const TitlePage = () => {
             </div> 
 
             <div className="TITLEPAGE_astroIntroContainer">
-              <p className="TITLEPAGE_astroLine large">ex-Astrophysics,</p>
+              <p className="TITLEPAGE_astroLine large">Incoming Intern @Meta</p>
               {/* <p className="astroLine small">from</p> */}
-              <p className="TITLEPAGE_astroLine large">Columbia University Graduate</p>
+              <p className="TITLEPAGE_astroLine large">Astrophysics Graduate from Columbia University</p>
             </div>
 
           </div>
         
 
           <div className="TITLEPAGE_buttonContainer">
-            <button className="TITLEPAGE_titleButtons TITLEPAGE_downloadCVButton" onClick={() => window.open('./Alexandra-Savino-Resume.pdf', '_blank')}>
+            <button className="TITLEPAGE_titleButtons TITLEPAGE_downloadCVButton" onClick={() => window.open('../images/Alexandra-Savino-Resume.pdf', '_blank')}>
               Download CV
             </button>
-            <button className="TITLEPAGE_titleButtons TITLEPAGE_contactMeButton" onClick={() => window.location.href = '/contact-me'}>
+            <button className="TITLEPAGE_titleButtons TITLEPAGE_contactMeButton" onClick={goToContactMe}>
               Contact Me
             </button>
           </div>

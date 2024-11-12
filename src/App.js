@@ -19,7 +19,7 @@ const App = () => {
 
   return (
     <div className="app-container">
-      <DottedBackground />
+      <DottedBackground/>
       <Router> 
         <Routes>
           <Route path="/" element={<TitlePage />} />
