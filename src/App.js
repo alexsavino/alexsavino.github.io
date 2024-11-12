@@ -8,7 +8,7 @@ import DottedBackground from './generals/DottedGraph';
 // import NavBarLayout from './generals/NavBarLayout';
 
 import TitlePage from './pages/TitlePage';
-// import ContactMe from './pages/ContactMe';
+import ContactMe from './pages/ContactMe';
 // import AboutMe from './pages/AboutMe';
 // import WorkProjects from './pages/WorkProjects';
 // import CreativeProjects from './pages/CreativeProjects';
@@ -23,7 +23,7 @@ const App = () => {
       <Router basename={process.env.PUBLIC_URL}> 
         <Routes>
           <Route path="/" element={<TitlePage />} />
-          {/* <Route path="/contact-me" element={<ContactMe />} /> */}
+          <Route path="/contact-me" element={<ContactMe />} />
           {/* <Route path="/contact-me" element={<NavBarLayout><ContactMe /></NavBarLayout>} /> */}
           {/* <Route path="/about-me" element={<AboutMe />} /> */}
           {/* <Route path="/about-me" element={<NavBarLayout><AboutMe /></NavBarLayout>} /> */}
