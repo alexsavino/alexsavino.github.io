@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "https://alexsavino.github.io/static/css/main.f5adfc1f.css",
+    "main.js": "https://alexsavino.github.io/static/js/main.cb5c373e.js",
+    "static/media/malta-board.png": "https://alexsavino.github.io/static/media/malta-board.e4c1a915e69994aed7f3.png",
+    "static/media/title-page-schematic.png": "https://alexsavino.github.io/static/media/title-page-schematic.92976e60fdcb0b25cf72.png",
+    "index.html": "https://alexsavino.github.io/index.html",
+    "main.f5adfc1f.css.map": "https://alexsavino.github.io/static/css/main.f5adfc1f.css.map",
+    "main.cb5c373e.js.map": "https://alexsavino.github.io/static/js/main.cb5c373e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f5adfc1f.css",
+    "static/js/main.cb5c373e.js"
+  ]
+}
