@@ -1,129 +1,58 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import './ContactMe.css';
 
 const ContactMe = () => {
   const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+  const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [emailError, setEmailError] = useState('');
-  const [nameError, setNameError] = useState('');
+  const [subjectError, setSubjectError] = useState('');
   const [messageError, setMessageError] = useState('');
 
-  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  const namePattern = /^[a-zA-Z' -]+$/;
-
-  const handleSendMessage = async (event) => {
+  const handleSendMessage = (event) => {
     event.preventDefault();
 
     const trimmedName = name.trim();
-    const trimmedEmail = email.trim();
+    const trimmedSubject = subject.trim();
     const trimmedMessage = message.trim();
 
-    setNameError('');
+    setSubjectError('');
     setMessageError('');
-    setEmailError('');
 
     let hasError = false;
 
-    if (!trimmedName) {
-      setNameError('Your name is required!');
+    if (!trimmedSubject) {
+      setSubjectError('The subject is required!');
       hasError = true;
-      setName('');
-    } else if (!namePattern.test(trimmedName)) {
-      setNameError("Name can only contain letters, apostrophes, spaces, and hyphens.");
-      hasError = true;
-      setName('');
-    } else {
-      setNameError('');
-    }
-
-    if (!trimmedEmail) {
-      setEmailError('A valid email is required!');
-      hasError = true;
-      setEmail('');
-    } else if (!emailRegex.test(trimmedEmail)) {
-      setEmailError('Please enter a valid email!');
-      hasError = true;
-      setEmail('');
     }
 
     if (!trimmedMessage) {
       setMessageError('A message is required!');
       hasError = true;
-      setMessage('');
     }
 
-    if (hasError) {
-      return;
-    }
+    if (hasError) return;
 
-    const formData = {
-      name: trimmedName,
-      email: trimmedEmail,
-      message: trimmedMessage,
-    };
+    const myEmail = "alexandra.v.savino@gmail.com";
 
-    try {
-      const response = await fetch('http://localhost:5001/send-message', {
-        method: 'POST',
-        body: JSON.stringify(formData),
-        headers: { 'Content-Type': 'application/json' },
-      });
+    const mailtoLink = `mailto:${myEmail}?subject=${encodeURIComponent(trimmedSubject + ' (from ' + trimmedName + ')')}&body=${encodeURIComponent(trimmedMessage)}`;
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        const emailError = errorData.errors.find((err) => err.field === 'email');
+    window.location.href = mailtoLink;
 
-        if (emailError) {
-          setEmail(''); 
-          setEmailError('Invalid Email');
-        }
-
-        throw new Error('Error submitting data');
-      }
-
-      console.log('Data submitted successfully!');
-      setIsSubmitted(true);
-      setName('');
-      setEmail('');
-      setMessage('');
-      setEmailError('');
-
-    } catch (error) {
-      console.error('Error:', error);
-    }
+    setIsSubmitted(true);
+    setName('');
+    setSubject('');
+    setMessage('');
   };
-
-  const nameInputRef = useRef(null);
-  const emailInputRef = useRef(null);
-
-  const handleSwipe = (event, inputRef) => {
-    if (event.touches.length === 2) {
-      const deltaX = event.touches[0].clientX - event.touches[1].clientX;
-      if (deltaX > 0) {
-        inputRef.current.scrollLeft += 20;
-      } else if (deltaX < 0) {
-        inputRef.current.scrollLeft -= 20;
-      }
-    }
-  };
-
-  useEffect(() => {
-    const height = document.querySelector('.CONTACTME_primaryRectangle').offsetHeight;
-    document.documentElement.style.setProperty('--CONTACTME-primary-rectangle-height', `${height}px`);
-  }, [isSubmitted, name, email, message]);
 
   return (
     <div id="contactMe" className="CONTACTME_pageContainer">
-
       <div className="CONTACTME_contactMeSign">
         <p className="CONTACTME_title">Contact Me</p>
         <p className="CONTACTME_subtitle">I'd love to connect!</p>
       </div>
 
       <div className="CONTACTME_primaryRectangle">
-      
         {isSubmitted ? (
           <div className="CONTACTME_thankYouMessage">
             <h2>Thank you for your message!</h2>
@@ -134,42 +63,33 @@ const ContactMe = () => {
             <div className="CONTACTME_inputBoxContainer">
               <label htmlFor="name">Name</label>
               <input
-                className={`CONTACTME_inputBox ${nameError ? 'error' : ''}`}
+                className={`CONTACTME_inputBox`}
                 type="text"
                 id="name"
                 name="name"
                 value={name}
                 onChange={(event) => {
                   setName(event.target.value);
-                  setNameError('');
                 }}
-                placeholder={nameError || 'Jane Doe'}
-                autoComplete="off"
+                placeholder="Jane Doe"
                 required
-                ref={nameInputRef}
-                onTouchStart={(event) => handleSwipe(event, nameInputRef)}
-                onTouchMove={(event) => handleSwipe(event, nameInputRef)}
               />
             </div>
 
             <div className="CONTACTME_inputBoxContainer">
-              <label htmlFor="email">Email</label>
+              <label htmlFor="subject">Subject</label>
               <input
-                className={`CONTACTME_inputBox ${emailError ? 'error' : ''}`}
+                className={`CONTACTME_inputBox ${subjectError ? 'error' : ''}`}
                 type="text"
-                id="email"
-                name="email"
-                value={email}
+                id="subject"
+                name="subject"
+                value={subject}
                 onChange={(event) => {
-                  setEmail(event.target.value);
-                  setEmailError('');
+                  setSubject(event.target.value);
+                  setSubjectError('');
                 }}
-                placeholder={emailError || 'email@gmail.com'}
-                autoComplete="off"
+                placeholder={subjectError || 'Subject of your message'}
                 required
-                ref={emailInputRef}
-                onTouchStart={(event) => handleSwipe(event, emailInputRef)}
-                onTouchMove={(event) => handleSwipe(event, emailInputRef)}
               />
             </div>
 
@@ -181,17 +101,16 @@ const ContactMe = () => {
                 value={message}
                 onChange={(event) => {
                   setMessage(event.target.value);
-                  event.target.style.height = 'auto';
-                  event.target.style.height = `${Math.max(event.target.scrollHeight, 175)}px`;
                   setMessageError('');
                 }}
                 placeholder={messageError || 'Type your message here.'}
-                autoComplete="off"
                 required
-              ></textarea>
+              />
             </div>
 
-            <button className="CONTACTME_submitButton" onClick={handleSendMessage}>Submit</button>
+            <button className="CONTACTME_submitButton" onClick={handleSendMessage}>
+              Submit
+            </button>
           </div>
         )}
       </div>
