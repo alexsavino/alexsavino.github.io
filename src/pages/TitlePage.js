@@ -38,6 +38,16 @@ const TitlePage = () => {
   };
 
 
+  /* TO BE ABLE TO SCROLL UP TO THE ABOUT ME PAGE*/
+  // const [isScrollingUp, setIsScrollingUp] = useState(false);
+  // const [lastScrollY, setLastScrollY] = useState(0);
+  // const history = useHistory();
+
+  // useEffect(() => { 
+
+  // })
+
+
   return (
     <div className="TITLEPAGE_pageContainer">
       <div className="TITLEPAGE_contentWrapper">
