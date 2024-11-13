@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
+
 import './TitlePage.css';
 import titlePageSchematic from '../images/title-page-schematic.png';
 import maltaBoard from '../images/malta-board.png';
@@ -48,8 +50,15 @@ const TitlePage = () => {
   // })
 
 
+
   return (
-    <div className="TITLEPAGE_pageContainer">
+    <motion.div 
+      className="TITLEPAGE_pageContainer" 
+      initial={{ opacity:0 }} 
+      animate={{ opacity:1 }}
+      exit={{ opacity:0 }}
+      transition={{ duration:1, ease:"easeInOut"  }}
+    >
       <div className="TITLEPAGE_contentWrapper">
         <div className="TITLEPAGE_redContainer">
           <div className="TITLEPAGE_circuitRedRectangle"></div>
@@ -90,7 +99,7 @@ const TitlePage = () => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
