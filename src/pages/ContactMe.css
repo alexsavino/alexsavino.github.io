@@ -112,7 +112,6 @@
   letter-spacing: var(--font-news-cycle-ls);
 }
 
-.CONTACTME_inputBox:focus,
 .CONTACTME_inputBox:focus {
   border-color: var(--my-green);
   outline: none;

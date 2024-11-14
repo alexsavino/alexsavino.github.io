@@ -1,17 +1,51 @@
-import React, { useState } from 'react';
-import './TechnicalSkills.css';
-
-const TechnicalSkills = () => {
-
-  // TO BE ABLE TO SEARCH MY SKILLS
-  const allSkillsDict = {'Python': 'proficient in', 'NumPy': 'proficient in', 'Pandas': 'proficient in', 'Plotly': 'proficient in', 'Matplotlib': 'proficient in', 'Java': 'proficient in', 'HTML': 'proficient in', 'CSS': 'proficient in', 'GitHub': 'proficient in', 'VSCode': 'proficient in', 'Data Visualization': 'proficient in', 'UI/UX': 'proficient in',
-    'Linux': 'knowledgeable in', 'Unix': 'knowledgeable in', 'macOS': 'knowledgeable in', 'CLI': 'knowledgeable in', 'JavaScript': 'knowledgeable in', 'PyCharm': 'knowledgeable in', 'Intellij': 'knowledgeable in', 'MIPS': 'knowledgeable in', 'iOS Development': 'knowledgeable in', 'Xcode': 'knowledgeable in', 'Swift': 'knowledgeable in', 'SwiftUI': 'knowledgeable in', 'MapKit': 'knowledgeable in',
-    'PyTorch': 'some familiarity with', 'Scikit-learn': 'some familiarity with', 'SciPy': 'some familiarity with', 'NodeJS': 'some familiarity with', 'ReactJS': 'some familiarity with', 'SQL': 'some familiarity with', 'mySQL': 'some familiarity with', 'PostgreSQL': 'some familiarity with', 'Postman': 'some familiarity with', 'pgAdmin 4': 'some familiarity with', 'REST APIs': 'some familiarity with', 'Matlab': 'some familiarity with'
-  }
-
-  const [searchTerm, setSearchTeam] = useState('');
+import { useState } from "react";
+import Trie from "./trie.js";
+import "./TechnicalSkills.css";
 
 
+const dictionary = {
+  words: [
+    'Python', 'NumPy', 'Pandas', 'Plotly', 'Matplotlib', 'Java', 'HTML', 'CSS',
+    'GitHub', 'VSCode', 'Data Visualization', 'UI/UX', 'Linux', 'Unix', 'MacOS',
+    'CLI', 'JavaScript', 'PyCharm', 'Intellij', 'MIPS', 'iOS Development', 'Xcode',
+    'Swift', 'SwiftUI', 'MapKit', 'PyTorch', 'Scikit-learn', 'SciPy', 'NodeJS',
+    'ReactJS', 'SQL', 'mySQL', 'PostgreSQL', 'Postman', 'pgAdmin 4', 'REST APIs', 'MatLab'
+  ]
+};
+
+function TechnicalSkills() {
+  const [prefix, setPrefix] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
+  var myTrie = new Trie();
+
+  (async () => {
+    const words = dictionary.words;
+    for (let i = 0; i < words.length; i++) {
+      const word = words[i];
+      myTrie.insert(word);
+    }
+  })();
+
+  const onChange = (e) => {
+    const value = e.target.value;
+    setPrefix(value);
+
+    const words = value.split(" ");
+    const triePrefix = words[words.length - 1].toLowerCase();
+    const foundWords = myTrie.find(triePrefix);
+
+    if (foundWords.length > 0 && value !== "" && value[value.length - 1] !== " ") {
+      setSuggestions(foundWords);
+    } else {
+      setSuggestions([]);
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.keyCode === 39) {
+      setPrefix(suggestions[0]);
+    }
+  };
 
   return (
     <div id="technicalSkills" className="TECHSKILLS_pageContainer">
@@ -26,18 +60,29 @@ const TechnicalSkills = () => {
 
 
 
-
         <div className="TECHSKILLS_searchContainer">
-          <div className="TECHSKILLS_searchTitle">
-            <p>Search:</p>
+          <div className="TECHSKILLS_searchTitleAndBar">
+            <div className="TECHSKILLS_searchTitle">
+              <p>Search:</p>
+            </div>
+            <input
+              className="TECHSKILLS_actualSearchBox"
+              type="text"
+              name="search-bar"
+              id="search-bar"
+              value={prefix}
+              onChange={onChange}
+              onKeyDown={handleKeyDown}
+            />
           </div>
-          <input 
-            className="TECHSKILLS_actualSearchBox"
-            type="text"
-            // value={searchedSkill}
-            placeholder={"Type the skill you're interested in."}
-          />
+          <div className="TECHSKILLS_suggestionBox">
+            {suggestions.map((suggestion, index) => (
+              <p key={index}>{suggestion}</p>
+            ))}
+          </div>
         </div>
+
+
 
 
 
@@ -49,7 +94,7 @@ const TechnicalSkills = () => {
               <p>Some Familiarity:</p>
             </div>
             <div className="TECHSKILLS_someFamiliaritySkills">
-              <p>PyTorch, Sklearn, SciPy, NodeJS, ReactJS, SQL (mySQL), PostgreSQL, Postman/pgAdmin 4, REST APIs, Matlab</p>
+              <p>PyTorch, Scikit-learn, SciPy, NodeJS, ReactJS, SQL (mySQL), PostgreSQL, Postman/pgAdmin 4, REST APIs, Matlab</p>
             </div>
           </div>
 
@@ -75,7 +120,7 @@ const TechnicalSkills = () => {
 
       </div>
     </div>
-  )
+  );
 }
 
 export default TechnicalSkills;
