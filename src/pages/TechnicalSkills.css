@@ -1,0 +1,119 @@
+
+@import '../generals/universals.css';
+
+/* TECHNICAL SKILLS MANILA LABEL */
+.TECHSKILLS_pageContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: calc(100px + var(--CONTACTME-primary-rectangle-height) + 74px);
+  min-height: 100vh;
+  overflow: auto;
+}
+
+.TECHSKILLS_contactMeSign {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+
+  position: absolute;
+  top: 66px;
+  left: 90px;
+  width: auto;
+
+  background-color: var(--my-blue);
+  border-radius: 10px;
+
+  color: white;
+  font-family: var(--font-script);
+  font-weight: bold;
+  letter-spacing: var(--font-script-ls);
+
+  z-index: 1;
+}
+
+.TECHSKILLS_title {
+  font-size: 40px;
+}
+
+.TECHSKILLS_subtitle {
+  font-size: 20px;
+  padding-left: 30px;
+}
+
+.TECHSKILLS_title, 
+.TECHSKILLS_subtitle {
+  margin: 0;
+}
+
+/* RED BACKGROUND */
+.TECHSKILLS_primaryRectangle {
+  flex: 1;
+  flex-grow: 1;
+  margin-left: 60px;
+  margin-right: 60px;
+  margin-top: 100px;
+  margin-bottom: 74px; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--my-red);
+  border: none;
+  border-radius: 10px;
+  padding: 55px 0;
+  color: black;
+  box-sizing: border-box;
+  min-height: 593px;
+  font-family: var(--font-news-cycle);
+}
+
+
+
+/*  */
+
+.TECHSKILLS_searchContainer {
+  position: absolute;
+  top: 210px;
+  background-color: orange;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.TECHSKILLS_searchTitle {
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+
+/* WRITTEN SKILLS AT THE BOTTOM */
+.TECHSKILLS_writtenSkills {
+  position: absolute;
+  top: 450px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  color: white;
+  gap: 75px;
+}
+
+.TECHSKILLS_someFamiliarity,
+.TECHSKILLS_knowledgeable,
+.TECHSKILLS_proficient {
+  width: 200px;
+}
+
+.TECHSKILLS_someFamiliarityTitle,
+.TECHSKILLS_knowledgeableTitle,
+.TECHSKILLS_proficientTitle {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.TECHSKILLS_someFamiliaritySkills,
+.TECHSKILLS_knowledgeableSkills,
+.TECHSKILLS_proficientSkills {
+  font-size: 16px;
+}

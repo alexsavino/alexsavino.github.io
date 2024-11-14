@@ -6,6 +6,7 @@ const ContactMe = () => {
   const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [nameError, setNameError] = useState('');
   const [subjectError, setSubjectError] = useState('');
   const [messageError, setMessageError] = useState('');
 
@@ -16,13 +17,19 @@ const ContactMe = () => {
     const trimmedSubject = subject.trim();
     const trimmedMessage = message.trim();
 
+    setNameError('');
     setSubjectError('');
     setMessageError('');
 
     let hasError = false;
 
+    if (!trimmedName) {
+      setNameError('Your name is required!');
+      hasError = true;
+    }
+
     if (!trimmedSubject) {
-      setSubjectError('The subject is required!');
+      setSubjectError('A subject is required!');
       hasError = true;
     }
 
@@ -63,7 +70,7 @@ const ContactMe = () => {
             <div className="CONTACTME_inputBoxContainer">
               <label htmlFor="name">Name</label>
               <input
-                className={`CONTACTME_inputBox`}
+                className={`CONTACTME_inputBox ${nameError ? 'error' : ''}`}
                 type="text"
                 id="name"
                 name="name"
@@ -71,7 +78,7 @@ const ContactMe = () => {
                 onChange={(event) => {
                   setName(event.target.value);
                 }}
-                placeholder="Jane Doe"
+                placeholder={nameError || "Jane Doe"}
                 required
               />
             </div>
@@ -88,7 +95,7 @@ const ContactMe = () => {
                   setSubject(event.target.value);
                   setSubjectError('');
                 }}
-                placeholder={subjectError || 'Subject of your message'}
+                placeholder={subjectError || 'Type your email subject here.'}
                 required
               />
             </div>

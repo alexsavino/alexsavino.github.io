@@ -11,7 +11,7 @@ const App = () => {
 
   return (
     <div className="app-container">
-      <DottedBackground/>
+      {/* <DottedBackground/> */}
       <Router> 
         {/* <NavBar /> */}
         <AnimatedRoutes />

@@ -57,7 +57,7 @@ const TitlePage = () => {
       initial={{ opacity:0 }} 
       animate={{ opacity:1 }}
       exit={{ opacity:0 }}
-      transition={{ duration:1, ease:"easeInOut"  }}
+      transition={{ duration:0.75, ease:"easeInOut"  }}
     >
       <div className="TITLEPAGE_contentWrapper">
         <div className="TITLEPAGE_redContainer">
@@ -74,7 +74,7 @@ const TitlePage = () => {
             </div> 
 
             <div className="TITLEPAGE_astroIntroContainer">
-              <p className="TITLEPAGE_astroLine large"> Incoming @Meta</p>
+              <p className="TITLEPAGE_astroLine large"> Incoming SWE Intern @ Meta</p>
               {/* <p className="astroLine small">from</p> */}
               <p className="TITLEPAGE_astroLine small">Astrophysics Grad </p>
               <p className="TITLEPAGE_astroLine large">Columbia University</p>
