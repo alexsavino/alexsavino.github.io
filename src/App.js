@@ -3,7 +3,7 @@ import { HashRouter as Router } from 'react-router-dom';
 import './App.css';
 
 import AnimatedRoutes from './generals/AnimatedRoutes';
-import DottedBackground from './generals/DottedGraph'; 
+// import DottedBackground from './generals/DottedGraph'; 
 // import NavBar from './generals/NavBar';
 // import NavBarLayout from './gen erals/NavBarLayout';
 
@@ -11,7 +11,7 @@ const App = () => {
 
   return (
     <div className="app-container">
-      {/* <DottedBackground/> */}
+      {/* <DottedBackground /> */}
       <Router> 
         {/* <NavBar /> */}
         <AnimatedRoutes />
