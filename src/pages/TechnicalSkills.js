@@ -1,9 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Trie from "./trie.js";
 import "./TechnicalSkills.css";
-import whiteSearchIcon from '../images/white-search-icon.png';
 
-// Dictionary containing skills with their proficiency levels as values
 const dictionary = {
   Python: "Proficient",
   NumPy: "Proficient",
@@ -46,67 +44,87 @@ const dictionary = {
 };
 
 function TechnicalSkills() {
-  const [prefix, setPrefix] = useState('');  // Stores the current search value
-  const [experienceSentence, setExperienceSentence] = useState(''); // Stores the experience sentence
-  const [suggestions, setSuggestions] = useState([]); // Stores the suggestions based on search prefix
+  const [prefix, setPrefix] = useState('');
+  const [experienceSentence, setExperienceSentence] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
+  const [myTrie] = useState(new Trie());
+  const [showProficientBox, setShowProficientBox] = useState(false);
+  const [showKnowledgeableBox, setShowKnowledgeableBox] = useState(false);
+  const [showFamiliarBox, setShowFamiliarBox] = useState(false);
 
-  var myTrie = new Trie();
-
-  // Initialize trie with words
-  (async () => {
+  useEffect(() => {
     const words = Object.keys(dictionary);
-    for (let i = 0; i < words.length; i++) {
-      const word = words[i];
-      myTrie.insert(word);
-    }
-  })();
+    words.forEach(word => myTrie.insert(word));
+  }, [myTrie]);
 
   const onChange = (e) => {
-    const value = e.target.value; // Keep spaces intact in the search input
+    const value = e.target.value;
     setPrefix(value);
 
-    // Clear the displayed sentence if the search bar is empty
     if (value === "") {
-      setSuggestions([]);  // Clear suggestions when input is empty
-      setExperienceSentence(''); // Clear the sentence when input is empty
+      setSuggestions([]);
+      setExperienceSentence('');
+      setShowProficientBox(false);
+      setShowKnowledgeableBox(false);
+      setShowFamiliarBox(false);
       return;
     }
 
-    // Process multi-word phrases
     const matchedSuggestions = Object.keys(dictionary).filter((term) =>
-      term.toLowerCase().startsWith(value.toLowerCase()) // Match by prefix (case-insensitive)
+      term.toLowerCase().startsWith(value.toLowerCase())
     );
 
-    setSuggestions(matchedSuggestions); // Set suggestions based on user input
+    setSuggestions(matchedSuggestions);
   };
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
-      const normalizedInput = prefix.trim().toLowerCase();
-      const matchedSkill = Object.keys(dictionary).find((skill) =>
-        skill.toLowerCase() === normalizedInput
-      );
+      searchSkill(prefix);
+    }
+  };
 
-      if (matchedSkill) {
-        const proficiency = dictionary[matchedSkill];
-        
-        // Build the proficiency sentence based on the skill's proficiency level
-        let proficiencySentence = "";
-        if (proficiency === "Proficient") {
-          proficiencySentence = `I am proficient in ${matchedSkill}.`;
-        } else if (proficiency === "Knowledgeable") {
-          proficiencySentence = `I am knowledgeable in ${matchedSkill}.`;
-        } else if (proficiency === "Some Familiarity") {
-          proficiencySentence = `I have some familiarity with ${matchedSkill}.`;
-        }
+  const searchSkill = (query) => {
+    const normalizedInput = query.trim().toLowerCase();
+    const matchedSkill = Object.keys(dictionary).find((skill) =>
+      skill.toLowerCase() === normalizedInput
+    );
 
-        setExperienceSentence(proficiencySentence);
-      } else {
-        setExperienceSentence(`I have no experience with "${prefix.trim()}".`);
+    if (matchedSkill) {
+      const proficiency = dictionary[matchedSkill];
+      // let proficiencySentence = "";
+
+      if (proficiency === "Proficient") {
+        // proficiencySentence = `I am proficient in ${matchedSkill}.`;
+        setShowProficientBox(true);
+        setShowKnowledgeableBox(false);
+        setShowFamiliarBox(false);
+      } else if (proficiency === "Knowledgeable") {
+        // proficiencySentence = `I am knowledgeable in ${matchedSkill}.`;
+        setShowProficientBox(false);
+        setShowKnowledgeableBox(true);
+        setShowFamiliarBox(false);
+      } else if (proficiency === "Some Familiarity") {
+        // proficiencySentence = `I have some familiarity with ${matchedSkill}.`;
+        setShowProficientBox(false);
+        setShowKnowledgeableBox(false);
+        setShowFamiliarBox(true);
       }
 
-      setSuggestions([]); // Clear suggestions after pressing Enter
+      // setExperienceSentence(proficiencySentence);
+    } else if (query.trim()) {
+      setExperienceSentence(`I have no experience with ${query.trim()} (yet?). :(`);
+      setShowProficientBox(false);
+      setShowKnowledgeableBox(false);
+      setShowFamiliarBox(false);
     }
+
+    setSuggestions([]);
+  };
+
+  const handleSuggestionClick = (suggestion) => {
+    setPrefix(suggestion);
+    setSuggestions([]);
+    searchSkill(suggestion);
   };
 
   return (
@@ -124,7 +142,7 @@ function TechnicalSkills() {
             </div>
             {!prefix && (
               <img 
-                src={whiteSearchIcon} 
+                src={'PUBLIC_URL%/icons/white-search-icon.png'} 
                 alt="Search Icon" 
                 className="TITLEPAGE_whiteSearchIconPNG"
               />
@@ -136,28 +154,32 @@ function TechnicalSkills() {
               id="search-bar"
               value={prefix}
               onChange={onChange}
-              onKeyDown={handleKeyDown}  // Listen for the Enter key
+              onKeyDown={handleKeyDown}
             />
           </div>
+
+          {suggestions.length > 0 && (
+            <div className="TECHSKILLS_suggestionBox">
+              {suggestions.map((suggestion, index) => (
+                <button
+                  key={index}
+                  className="TECHSKILLS_suggestionButton"
+                  onClick={() => handleSuggestionClick(suggestion)}
+                >
+                  {suggestion}
+                </button>
+              ))}
+            </div>
+          )}
+
+          {experienceSentence && (
+            <div className="TECHSKILLS_searchResult">
+              <p>{experienceSentence}</p>
+            </div>
+          )}
         </div>
+        
 
-        {/* Display the search result after hitting Enter */}
-        {experienceSentence && (
-          <div className="TECHSKILLS_searchResult">
-            <p>{experienceSentence}</p>
-          </div>
-        )}
-
-        {/* Suggestion Box */}
-        {suggestions.length > 0 && (
-          <div className="TECHSKILLS_suggestionBox">
-            {suggestions.map((suggestion, index) => (
-              <p key={index}>{suggestion}</p>
-            ))}
-          </div>
-        )}
-
-        {/* Skill blocks */}
         <div className="TECHSKILLS_writtenSkills">
           <div className="TECHSKILLS_someFamiliarity">
             <div className="TECHSKILLS_someFamiliarityTitle">
@@ -187,6 +209,22 @@ function TechnicalSkills() {
           </div>
         </div>
 
+
+        {/* Render the grey boxes based on skill level */}
+        {showProficientBox && (
+          <div className={`greyBox proficientBox ${showProficientBox ? 'show' : 'hide'}`}></div>
+        )}
+        {showKnowledgeableBox && (
+          <div className={`greyBox knowledgeableBox ${showKnowledgeableBox ? 'show' : 'hide'}`}></div>
+        )}
+        {showFamiliarBox && (
+          <div className={`greyBox familiarBox ${showFamiliarBox ? 'show' : 'hide'}`}></div>
+        )}
+
+
+        <div className="TECHSKILLS_writtenSkills">
+          {/* Your skill categories can go here as per the original code */}
+        </div>
       </div>
     </div>
   );

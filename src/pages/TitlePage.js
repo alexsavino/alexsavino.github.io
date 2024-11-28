@@ -3,8 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 import './TitlePage.css';
-import titlePageSchematic from '../images/title-page-schematic.png';
-import maltaBoard from '../images/malta-board.png';
 
 const TitlePage = () => {
 
@@ -62,7 +60,7 @@ const TitlePage = () => {
       <div className="TITLEPAGE_contentWrapper">
         <div className="TITLEPAGE_redContainer">
           <div className="TITLEPAGE_circuitRedRectangle"></div>
-          <img src={titlePageSchematic} alt="Arbitrary Circuit Schematic" className="TITLEPAGE_circuitSchematicPNG"/>
+          <img src={process.env.PUBLIC_URL + './images/title-page-schematic.png'} alt="Arbitrary Circuit Schematic" className="TITLEPAGE_circuitSchematicPNG"/>
         </div>
 
         <div className="TITLEPAGE_rightSideContainer">
@@ -95,7 +93,7 @@ const TitlePage = () => {
 
           <div className="TITLEPAGE_yellowContainer">
             <div className="TITLEPAGE_pngYellowRectangle"></div>
-            <img src={maltaBoard} alt="Arbitrary Chip" className="TITLEPAGE_maltaBoardPNG"/>
+            <img src={process.env.PUBLIC_URL + '/images/malta-board.png'} alt="Arbitrary Chip" className="TITLEPAGE_maltaBoardPNG"/>
           </div>
         </div>
       </div>

@@ -73,13 +73,12 @@
 /* SEARCH BOX + FUNCTIONALITY */
 .TECHSKILLS_searchContainer {
   position: absolute;
-  top: 210px;
+  top: 195px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   color: white;
-  /* background-color: green; */
   padding: 10px;
 }
 
@@ -89,13 +88,15 @@
   justify-content: center;
   align-items: center;
   gap: 20px;
-  /* background-color: orange; */
 }
 
 .TECHSKILLS_searchTitle {
   color: white;
   font-weight: bold;
   font-size: 20px;
+  font-family: var(--font-script);
+  letter-spacing: var(--font-script-ls);
+  margin-top: 1px;
 }
 
 .TITLEPAGE_whiteSearchIconPNG {
@@ -112,12 +113,11 @@
   overflow: hidden;
 
   background-color: var(--my-darker-red);
-  /* background-color: var(--my-red); */
   border: solid;
   border-color: white;
   border-width: 1.5px;
   border-radius: 8px;
-  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
 
   color: white;
   font-size: 17px;
@@ -129,18 +129,57 @@
 }
 
 .TECHSKILLS_suggestionBox {
-  background-color: yellow;
-  position: absolute;
-  top: 10px;
-  left: 100px;
-} .TECHSKILLS_suggestionBox p {
+  position: relative;
+  top: 15px;
+  left: 45px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 7px;
+  width: 520px;
+  overflow-x: hidden;
+}
+ .TECHSKILLS_suggestionBox p {
   margin: 0px;
   margin-bottom: 5px;
 }
 
+.TECHSKILLS_suggestionButton {
+  background-color: var(--my-grey);
+  padding: 8px 9px;
+  border-radius: 6px;
+
+  color: black;
+  font-size: 15px;
+  font-weight: 100;
+
+  text-align: center;
+  white-space: nowrap;
+
+  border: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.TECHSKILLS_suggestionButton:hover,
+.TECHSKILLS_suggestionButton:active {
+  transform: scale(0.95);
+}
+
+.TECHSKILLS_suggestionButton.clicked { 
+  transform: scale(0.95);
+  opacity: 0.5;
+}
 
 
-
+/* .TECHSKILLS_searchResult {
+  color: white;
+  font-size: 25px;
+  position: absolute;
+  top: 155px;
+  left: 99px;
+  margin: -30px;
+  border-radius: 8px;
+} */
 
 
 
@@ -150,7 +189,7 @@
 /* WRITTEN SKILLS AT THE BOTTOM */
 .TECHSKILLS_writtenSkills {
   position: absolute;
-  top: 460px;
+  top: 490px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -176,4 +215,66 @@
 .TECHSKILLS_knowledgeableSkills,
 .TECHSKILLS_proficientSkills {
   font-size: 16px;
+}
+
+
+
+
+/* FOR THE GREY HIGHLIGHT BOXES */
+.greyBox {
+  position: absolute;
+  top: 495px;
+  width: 210px;
+  height: 160px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translate(-50%, 0) scale(1); /* Start at scale 1 */
+  border-radius: 8px;
+  background-color: #d3d3d3;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.greyBox.show {
+  opacity: 0.6;
+  pointer-events: auto;
+  transform: scale(1);
+  animation: scaleUpAndDown 1.2s forwards;
+}
+
+/* .greyBox.show:hover {
+  transform: scale(0.95);
+} */
+
+@keyframes scaleUpAndDown {
+  0% {
+    transform: translate(-50%, 0) scale(0.95);
+    opacity: 0;
+  }
+  50% {
+    transform: translate(-50%, 0) scale(1.02);
+    opacity: 0.45;
+  }
+  100% {
+    transform: translate(-50%, 0) scale(1);
+    opacity: 0.6;
+  }
+}
+
+
+/* .greyBox.hide {
+  background-color: blue !important;
+  border: 2px solid yellow !important;
+  animation: scaleOut 1s forwards;
+  pointer-events: none;
+} */
+
+
+.proficientBox {
+  left: calc(50% + 267px);
+} .knowledgeableBox {
+  left: calc(50% - 6px);
+} .familiarBox {
+  left: calc(50% - 282px);
 }

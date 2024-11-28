@@ -1,0 +1,351 @@
+@import '../generals/universals.css';
+
+/* CONTACT ME MANILA LABEL */
+.WORKPROJECTS_pageContainer {
+  position: relative;
+  min-width: 1168px;
+  display: flex;
+  flex-direction: column;
+  height: calc(100px + var(--WORKPROJECTS-primary-rectangle-height) + 74px);
+  min-height: 100vh;
+  overflow: auto;
+}
+
+.WORKPROJECTS_contactMeSign {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+
+  position: absolute;
+  top: 66px;
+  left: 90px;
+  width: auto;
+
+  color: white;
+  background-color: var(--my-red);
+  border-radius: 10px;
+
+  font-family: var(--font-script);
+  font-weight: bold;
+  letter-spacing: var(--font-script-ls);
+
+  z-index: 1;
+}
+
+.WORKPROJECTS_title {
+  font-size: 40px;
+}
+
+.WORKPROJECTS_subtitle {
+  font-size: 20px;
+  padding-left: 30px;
+}
+
+.WORKPROJECTS_title, 
+.WORKPROJECTS_subtitle {
+  margin: 0;
+}
+  
+/* BEIGE BACKGROUND */
+.WORKPROJECTS_primaryRectangle {
+  flex: 1;
+  flex-grow: 1;
+  margin-left: 60px;
+  margin-right: 60px;
+  margin-top: 100px;
+  margin-bottom: 74px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--my-blue);
+  border: none;
+  border-radius: 10px;
+  color: black;
+}
+
+
+/* FOR THE SEARCH BAR ABOVE */
+.WORKPROJECTS_searchButtonsContainer {
+  position: relative;
+  
+  width: fit-content;
+  display: flex;
+  gap: 7px;
+  margin-bottom: 15px;
+ }
+
+.WORKPROJECTS_selectedSkills {
+  position: relative;
+  left: -10px;
+  
+  width: 100%; 
+  height: 23px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  
+  color: white;
+  font-family: var(--font-script);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: var(--font-script-ls);
+  margin-top: 5px;
+  margin-bottom: 16px;
+}
+
+.WORKPROJECTS_selectedSkillsContainer {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.WORKPROJECTS_selectedSkillsContainer .WORKPROJECTS_skillBox {
+  margin-right: 7px;
+  display: flex;
+  flex-direction: row;
+}
+
+.WORKPROJECTS_selectedSkills p {
+  margin: 0;
+  position: relative;
+}
+
+
+/* ACTUAL PROJECT CONTAINERS */
+@media (max-width: 1168px) {
+  .WORKPROJECTS_contentContainer {
+    width: 986px !important;
+  }
+} 
+@media (min-width: 1169px) and (max-width: 1399px) {
+  .WORKPROJECTS_contentContainer {
+    width: calc(986px + (1090 - 986) * ((100vw - 1169px) / (1400 - 1169))) !important;
+  }
+} @media (min-width: 1400px) {
+  .WORKPROJECTS_contentContainer {
+    width: 1090px;
+  }
+}
+
+.WORKPROJECTS_contentContainer {
+  /* background-color: purple; */
+  position: relative;
+  top: 16px;
+  
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /* width: 1110px; */
+}
+
+.WORKPROJECTS_leftContentContainer {
+  position: relative;
+  /* top: 20px; */
+  
+  display: flex;
+  flex-direction: column;
+}
+
+.WORKPROJECTS_allProjectsContainer {
+  position: relative;
+  width: fit-content;
+  height: 375px;
+  overflow-y: auto;
+  border: solid white;
+  border-width: 1.5px;
+  border-radius: 8px;
+  padding: 10px;
+  width: 816px;
+  background-color: var(--my-darker-blue);
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+
+.WORKPROJECTS_projectRowContainer {
+  /* background-color: black; */
+  display: flex;
+  flex-direction: row;
+  align-items: first baseline;
+  margin-top: 0px;
+  margin-bottom: 15px;
+
+  color: white;
+  font-family: var(--font-news-cycle);
+  letter-spacing: var(--font-news-cycle-ls);
+  text-decoration: none;
+
+  gap: 25px;
+  cursor: pointer;
+  text-decoration: none;
+  width: 760px;
+}
+
+
+.WORKPROJECTS_rowLeft {
+  min-width: 80px;
+  font-size: 20px;
+  margin: 0px;
+
+  color: white;
+  font-family: var(--font-news-cycle);
+  letter-spacing: var(--font-news-cycle-ls);
+  text-decoration: none;
+  transition: all 0.3s ease-in-out
+}
+
+.WORKPROJECTS_rowRight {
+  max-width: 450px !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.WORKPROJECTS_projectTitle {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+
+  color: white;
+  font-family: var(--font-news-cycle);
+  letter-spacing: var(--font-news-cycle-ls);
+  text-decoration: none;
+  transition: all 0.3s ease-in-out
+}
+
+.WORKPROJECTS_description {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.5;
+  margin: 0;
+
+  color: white;
+  font-family: var(--font-news-cycle);
+  letter-spacing: var(--font-news-cycle-ls);
+  text-decoration: none;
+  transition: all 0.3s ease-in-out
+}
+
+.WORKPROJECTS_rowLeft:hover,
+.WORKPROJECTS_projectTitle:hover,
+.WORKPROJECTS_description:hover {
+  opacity: 0.5;
+}
+
+
+.WORKPROJECTS_skillsContainer {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 7px;
+
+  width: 300px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.WORKPROJECTS_skillsContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.WORKPROJECTS_skillsContainer {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.WORKPROJECTS_skillBox {
+  background-color: var(--my-grey);
+  padding: 8px 9px;
+  border-radius: 6px;
+
+  color: black;
+  font-size: 15px;
+  font-weight: 100;
+
+  text-align: center;
+  white-space: nowrap;
+
+  border: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.WORKPROJECTS_skillBox:hover,
+.WORKPROJECTS_skillBox:active {
+  transform: scale(0.95);
+}
+
+.WORKPROJECTS_skillBox.clicked { 
+  transform: scale(0.95);
+  opacity: 0.5;
+}
+
+
+.horizontalLine {
+  border: none; 
+  height: 1px; 
+  background-color: white; 
+  margin-top: 10px;
+
+  position: relative;
+  left: -122px;
+  width: 815px;
+}
+
+
+/* MAINTAINING THE SKILLS CONTAINER */
+
+.WORKPROJECTS_uniqueSkillsContainer {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 128px;
+  max-width: 150px;
+
+  font-family: var(--font-news-cycle);
+  letter-spacing: var(--font-news-cycle-ls);
+}
+
+.WORKPROJECTS_projectSearchTitle {
+  font-size: 20px;
+  margin: 0;
+  margin-bottom: 8px;
+}
+
+.WORKPROJECTS_skillsList {
+  width: fit-content;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.WORKPROJECTS_rightSkillButton {
+  font-size: 16px;
+  font-weight: 100;
+  line-height: 1.5;
+
+  border: none;
+  background-color: inherit;
+  color: white;
+  transition: all 0.3s ease-in-out;
+}
+
+.WORKPROJECTS_rightSkillButton:hover,
+.WORKPROJECTS_rightSkillButton:active {
+  transform: scale(0.95);
+}
+
+.xImage {
+  background-size: 22px auto;
+  position: relative;
+  top: 2.5px;
+  width: 10px;
+  height: auto;
+  display: block;
+  margin-left: 2px;
+}
